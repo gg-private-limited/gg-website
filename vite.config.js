@@ -4,6 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/gg-website/",
   plugins: [react()],
   resolve: {
     alias: {
