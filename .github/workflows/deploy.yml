@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger only on push to main branch
+      - main  # Run on pushes to main branch
 
 jobs:
   build-deploy:
@@ -13,22 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # Clean node_modules to prevent stale modules issue
-      - name: Clean node_modules
-        run: rm -rf node_modules
+      # Clean node_modules and package-lock.json to fix Rollup native module issue
+      - name: Clean npm modules and lockfile
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
 
       - name: Install dependencies
         run: npm install
