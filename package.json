@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://gg-private-limited.github.io/gg-website",
+  "homepage": "https://gg-private-limited.github.io/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
